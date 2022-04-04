@@ -43,7 +43,7 @@ let s = DOM("h1 .me")
 let div = DOM("#myDiv")
 let oldDiv = DOM(div)
 ```
-### Create DOM object from normal DOM element 😾
+### Create DOM object from Native DOM element 😾
 ```js
 let name = document.getElementById("name")
 let domName = DOM(name)
