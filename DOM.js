@@ -130,9 +130,9 @@ class DOMElem{
             let i = 0
             const ARR_LENGTH = textData.length
             const ELEM_LENGTH = this.length
-            
-            if(ignore && ARR_LENGTH != ELEM_LENGTH){
-                console.error("Length of input Array and DOM elements are not Same")
+
+            if(!ignore && ARR_LENGTH != ELEM_LENGTH){
+                console.error("Length of input Array and selected DOM elements are not Same")
                 return
             }
             

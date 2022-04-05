@@ -112,6 +112,23 @@ All are changed
 All are changed
 ```
 
+### Change Multiple Text(Array) 😲 🅰️🅰️🅰️
+```html
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+```
+```js
+DOM("h1").text = ["Abinash", "Pekachu", 10];
+```
+```
+Abinash
+Pekachu
+10
+```
+>Note : if the number of array elements and the number of elements in the array is not same it will give an error message. and `.textA` works similarly.
+
+
 
 
 ### Get single text 🅰️
