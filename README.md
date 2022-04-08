@@ -9,7 +9,7 @@
 
 Easily Manipulate DOM with DOM.js - As easiest as possible!!!
 # Full Documentation 🙈
-![Logo](./images/logo.jpg)
+![Logo](./images/logo.svg)
 
 ## How to Use 🤷‍♂️
 
