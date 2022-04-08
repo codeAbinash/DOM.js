@@ -7,7 +7,7 @@
 ![Watch](https://img.shields.io/github/stars/codeabinash/DOM.js?label=Watch&color=blue)
 ![Stars](https://img.shields.io/github/stars/codeabinash/DOM.js)
 
-Easily Manipulate DOM with DOM.js - As easiest as possible!!!
+Easily Manipulate DOM with DOM.js - As Easy as possible!!!
 # Full Documentation 🙈
 ![Logo](./images/logo.svg)
 
