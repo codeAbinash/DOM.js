@@ -1,4 +1,4 @@
-# DOM.js Alpha 1.0.1 🤫
+# DOM.js Alpha 1.1.2 🤫
 ![File Size](https://img.shields.io/github/size/codeAbinash/DOM.js/DOM.js?)
 ![Release Date](https://img.shields.io/github/release-date/codeabinash/DOM.js?color=limegreen)
 ![Languages](https://img.shields.io/github/languages/top/codeabinash/DOM.js?color=limegreen)
