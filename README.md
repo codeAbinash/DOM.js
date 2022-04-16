@@ -176,6 +176,28 @@ If length of texts in `text:[arr]` are not same as selected DOM elements and use
 
 
 
+```html
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+```
+```js
+DOM("h1").text = [
+    {text : "1", appendType : "append"},
+    "Hii",
+    {text : "2", appendType : "prepend"},
+    {text : "Abinash"}
+]
+```
+```
+Hello1
+Hii
+2Hello
+Abinash
+```
+
+
 
 
 
