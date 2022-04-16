@@ -126,8 +126,80 @@ Abinash
 Pekachu
 10
 ```
->Note : if the number of array elements and the number of elements in the array is not same it will give an error message. and `.textA` works similarly.
 
+### With Custom Settings 😲 🅰️🅰️
+```html
+<h1>Hello</h1>
+<h1>Hello</h1>
+<h1>Hello</h1>
+```
+```js
+DOM("h1").text = {
+    text:["Abinash", "Pekachu", 10],
+    appendType : "prepend"
+};
+```
+```
+AbinashHello
+PekachuHello
+10Hello
+```
+```js
+
+DOM("h1").text = {
+    text:["Abinash", "Pekachu"],
+    ignore : true,
+    appendType : "prepend"
+};
+```
+```
+AbinashHello
+PekachuHello
+Hello
+```
+
+```js
+DOM("h1").text = {
+    text:["Abinash", "Pekachu"],
+    ignore : false,
+    appendType : "prepend"
+};
+```
+> ERROR : Length of input Array and selected DOM elements are not Same
+```
+Hello
+Hello
+Hello
+```
+
+If length of texts in `text:[arr]` are not same as selected DOM elements and used `ignore:false` or `ignore` not specified then, there will be a `error : Length of input Array and selected DOM elements are not Same`
+
+
+
+
+
+
+### Text Append 📼🅰️
+```html
+<h1 id="d">JavaScript</h1>
+```
+```js
+let elem = DOM("#d")
+elem.text = { text : " Abinash", appendType : "append" }
+// JavaScript Abinash
+```
+
+### Text Prepend 📼🅰️
+```html
+<h1 id="d">JavaScript</h1>
+```
+```js
+let elem = DOM("#d")
+elem.text = { text : "Abinash", appendType : "prepend" }
+//console : AbinashJavaScript
+```
+
+> NOTE : Here in the place of `text : "Text"`, `data : "Text" ` can also be used. 
 
 
 
@@ -158,17 +230,6 @@ console.log(elements.textArr);
 ```
 > NOTE : `textArr` always returns as array for single DOM elements too.
 
-### Text Append 📼🅰️
-```html
-<h1 id="d">JavaScript</h1>
-```
-```js
-let elem = DOM("#d")
-elem.textA = " HTML"
-//or
-elem.text = elem.text + " HTML"
-//console : JavaScript HTML
-```
 ### Get Native DOM element 🤔
 ```js
 let name = DOM("#name")

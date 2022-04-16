@@ -44,6 +44,7 @@ class DOMElem{
         }
         
         if(typeof selector == "object" && selector.constructor.name == this.constructor.name){
+            // console.log("DOM ELEMENT");
             this.#elements = selector.domArr
             this.length = this.#elements.length
             return
@@ -80,71 +81,102 @@ class DOMElem{
     }
 
     set text(textData){
-        let fn = {
-            "append" : false,
-            "ignore" : false,
+        const ARG_DATA_TYPE = typeof textData
+        const ARG_IS_ARRAY = Array.isArray(textData)
+        const DOM_LENGTH = this.length
+
+        if(ARG_DATA_TYPE == "string" || ARG_DATA_TYPE == "number"){
+            //Number or String (Single value)
+            for(let i = 0; i < DOM_LENGTH; i++)
+                this.#elements[i].innerText = textData
+
+            return
         }
-        this.#editTextElem(textData, fn)
+
+        if(ARG_IS_ARRAY){
+            //Array Type data []
+            const ARR_LENGTH = textData.length
+            const LENGTH = DOM_LENGTH > ARR_LENGTH ? ARR_LENGTH : DOM_LENGTH;
+
+            for(let i = 0; i < LENGTH; i++)
+                new DOM(this.#elements[i]).text = textData[i]
+            return
+        }
+
+        if(ARG_DATA_TYPE == "object" && !ARG_IS_ARRAY){
+            //Handel Object Type {}
+            let text = textData.text || textData.data
+            const appendType = (textData.appendType || "modify").toLowerCase()
+            const ignore = textData.ignore || false
+
+            if(typeof text == "string" || typeof text == "number")
+                text = [text]
+
+            const ARR_LENGTH = text.length
+            const LENGTH = ARR_LENGTH > DOM_LENGTH ? DOM_LENGTH : ARR_LENGTH;
+
+            if(ARR_LENGTH != DOM_LENGTH && !ignore){
+                console.error("Length of input Array and selected DOM elements are not Same")
+                return
+            }
+
+            if(appendType == "modify"){
+                if(LENGTH == 1)
+                    for(let i = 0; i < DOM_LENGTH; i++)
+                        this.#elements[i].innerText = text[0]
+                else
+                    for(let i = 0; i < LENGTH; i++)
+                        this.#elements[i].innerText = text[i]
+                return
+            }
+
+            if(appendType == "append"){
+                if(LENGTH == 1)
+                    for(let i = 0; i < DOM_LENGTH; i++)
+                        this.#elements[i].innerText += text[0]
+                else
+                    for(let i = 0; i < LENGTH; i++)
+                        this.#elements[i].innerText += text[i]
+                return
+            }
+
+            if(appendType == "prepend"){
+                if(LENGTH == 1)
+                    for(let i = 0; i < DOM_LENGTH; i++)
+                        this.#elements[i].innerText = text[0] + this.#elements[i].innerText
+                else
+                    for(let i = 0; i < LENGTH; i++)
+                        this.#elements[i].innerText = text[i] + this.#elements[i].innerText
+                return
+            }
+            return
+        }
     }
 
-    set textA(textData){//textAppend
-        let fn = {
-            "append" : true,
-            "ignore" : false,
-        }
-        this.#editTextElem(textData, fn)
-    }
-
-    get text(){
+    get text(){ 
         if(this.length == 1)
             return this.#elements[0].innerText
         return this.textArr
     }
 
     get textArr(){
-        let text = []
-        for(let i = 0;i<this.length;i++)
+        const LENGTH = this.length; let text = []
+        for(let i = 0;i<LENGTH;i++)
             text.push(this.#elements[i].innerText)
         return text
     }
 
-    #editTextElem(textData,fn){
-        const DATA_TYPE = typeof textData
-        const ignore = fn.ignore
-        const append = fn.append
-
-        if(DATA_TYPE == "string" || DATA_TYPE == "number"){
-            //Handle Single String Data
-            if(append)
-                for(let i = 0; i < this.length; i++)
-                    this.#elements[i].innerText += textData
-            else
-                for(let i = 0; i < this.length; i++)
-                    this.#elements[i].innerText = textData
-
-            return
-        }
-
-        if(Array.isArray(textData)){
-            //Handle Array Data
-            let i = 0
-            const ARR_LENGTH = textData.length
-            const ELEM_LENGTH = this.length
-
-            if(!ignore && ARR_LENGTH != ELEM_LENGTH){
-                console.error("Length of input Array and selected DOM elements are not Same")
-                return
-            }
-            
-            const FINAL_LENGTH = ARR_LENGTH < ELEM_LENGTH ? ARR_LENGTH : ELEM_LENGTH
-            if(append)
-                for(i = 0; i < FINAL_LENGTH; i++)
-                    this.#elements[i].innerText += textData[i]
-            else
-                for(i = 0; i < FINAL_LENGTH; i++)
-                    this.#elements[i].innerText = textData[i]
-        }else //Unknown Data Type
-            console.error("Unknown Data type in text() method")
-        return
+    //HTML Methods
+    get html(){
+        if(this.length == 1)
+            return this.#elements[0].innerHTML
+        return this.htmlArr
     }
+    get htmlArr(){
+        const LENGTH = this.length; let HTML = []
+        for(let i = 0; i<LENGTH;i++)
+            HTML.push(this.#elements[i].innerHTML)
+        return HTML
+    }
+
 }
