@@ -7,9 +7,9 @@
 ![Watch](https://img.shields.io/github/stars/codeabinash/DOM.js?label=Watch&color=blue)
 ![Stars](https://img.shields.io/github/stars/codeabinash/DOM.js)
 
+![Logo](./images/logo.svg)
 Easily Manipulate DOM with DOM.js - As Easy as possible!!!
 # Full Documentation 🙈
-![Logo](./images/logo.svg)
 
 ## How to Use 🤷‍♂️
 
